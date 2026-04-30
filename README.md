@@ -14,7 +14,7 @@ This repository contains the report code for ECG multi-label classification on P
 
 ## Highlights
 
-- PTB-XL 5-superclass classification: `NORM`, `MI`, `CD`, `HYP`, `STTC`.
+- PTB-XL 5-superclass classification: `CD`, `HYP`, `MI`, `NORM`, `STTC`.
 - Signal preprocessing: moving-average smoothing, 50 Hz notch filtering, and 0.5 Hz high-pass filtering.
 - CNN baselines: ResNet-50, DenseNet-121, and Inception-v3.
 - Grad-CAM visualization for ECG image interpretation.
@@ -42,11 +42,9 @@ Please download PTB-XL and place it under `data/`:
 
 ```text
 data
-└── ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.1
-    ├── ptbxl_database.csv
-    ├── scp_statements.csv
-    ├── records100
-    └── records500
+├── ptbxl_database.csv
+├── scp_statements.csv
+└── records100
 ```
 
 You can change dataset paths in [config.py](src/config.py).
@@ -97,21 +95,25 @@ outputs/models
 Signal preprocessing evidence and report figures are in:
 
 ```text
-notebooks/01_signal_preprocessing_eda.ipynb
+notebooks/signal_preprocessing_eda.ipynb
 ```
 
 ## Visualization
 
-Run Grad-CAM after placing a ResNet-50 checkpoint in `outputs/models/`:
+Run Grad-CAM after placing checkpoints in `outputs/models/`:
 
 ```bash
-.venv/bin/python src/gradcam.py
+.venv/bin/python src/gradcam_resnet50.py
+.venv/bin/python src/gradcam_densenet121.py
+.venv/bin/python src/gradcam_inception_v3.py
 ```
 
-The result is saved to:
+Results are saved by model:
 
 ```text
-outputs/gradcam
+outputs/gradcam/resnet50
+outputs/gradcam/densenet121
+outputs/gradcam/inception_v3
 ```
 
 ## Report Assets

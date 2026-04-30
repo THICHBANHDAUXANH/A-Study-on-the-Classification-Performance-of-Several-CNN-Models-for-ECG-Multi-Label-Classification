@@ -269,9 +269,6 @@ print(f"Final validation recall: {final_val_recall:.2f}%")
 print(f"Final validation F1: {final_val_f1:.2f}%")
 
 def load_trained_model(model_path, num_classes, device):
-    """
-    Load trained ResNet50 model
-    """
     model = ECGResNet50(num_classes).to(device)
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])

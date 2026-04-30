@@ -14,6 +14,8 @@ from config import PTBXL_META_CSV, PTBXL_RECORD_BASE, PTBXL_SCP_CSV, REPORT_CLAS
 
 def smooth_signal(ecg: np.ndarray, window_size: int = 5) -> np.ndarray:
     kernel = np.ones(window_size, dtype=float) / window_size
+    if ecg.ndim == 2:
+        kernel = kernel[:, None]
     return sg.convolve(ecg, kernel, mode="same")
 
 def notch_filter(ecg: np.ndarray, fs: int = 100, freq: float = 50.0, q_factor: float = 30.0) -> np.ndarray:

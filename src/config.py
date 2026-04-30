@@ -2,7 +2,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-PTBXL_DIR = PROJECT_ROOT/"data/ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.1"
+PTBXL_DIR = PROJECT_ROOT/"data"
 PTBXL_META_CSV = PTBXL_DIR/"ptbxl_database.csv"
 PTBXL_SCP_CSV = PTBXL_DIR/"scp_statements.csv"
 PTBXL_RECORD_BASE = PTBXL_DIR
@@ -21,8 +21,8 @@ ARRAY_X_PATH = ARRAY_DIR/"ecg_images_array.npy"
 ARRAY_Y_PATH = ARRAY_DIR/"ecg_labels_array.npy"
 ARRAY_IDS_PATH = ARRAY_DIR/"ecg_array_ids.npy"
 
-REPORT_CLASSES = ["NORM", "MI", "CD", "HYP", "STTC"]
+REPORT_CLASSES = ["CD", "HYP", "MI", "NORM", "STTC"]
 
 IMAGE_SIZE = 224
 RANDOM_STATE = 48
-TEST_SIZE = 0.20
+TEST_SIZE = 0.34

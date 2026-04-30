@@ -51,12 +51,9 @@ print(f"Number of classes: {y.shape[1]}")
 class ECGInceptionV3(nn.Module):
     def __init__(self, num_classes):
         super(ECGInceptionV3, self).__init__()
-        use_pretrained = os.getenv("TRAIN_USE_PRETRAINED", "1").lower() not in {"0", "false", "no"}
-        weights = models.Inception_V3_Weights.DEFAULT if use_pretrained else None
-        aux_logits = True if weights is not None else False
         self.inception = models.inception_v3(
-            weights=weights,
-            aux_logits=aux_logits,
+            weights=models.Inception_V3_Weights.DEFAULT,
+            aux_logits=True,
         )
         self.inception.aux_logits = False
         self.inception.AuxLogits = None
@@ -176,7 +173,7 @@ def validate_epoch(model, val_loader, criterion, device):
     )
     return val_loss, val_acc, val_precision, val_recall, val_f1
 
-num_epochs = int(os.getenv("TRAIN_NUM_EPOCHS", "50"))
+num_epochs = 50
 train_losses = []
 val_losses = []
 train_accuracies = []
@@ -277,9 +274,6 @@ print(f"Final validation recall: {final_val_recall:.2f}%")
 print(f"Final validation F1: {final_val_f1:.2f}%")
 
 def load_trained_model(model_path, num_classes, device):
-    """
-    Load trained InceptionV3 model
-    """
     model = ECGInceptionV3(num_classes).to(device)
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])

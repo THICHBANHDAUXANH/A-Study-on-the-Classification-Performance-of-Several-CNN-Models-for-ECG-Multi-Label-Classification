@@ -18,9 +18,6 @@ X_PATH = REPO_ROOT/"outputs/arrays/ecg_images_array.npy"
 Y_PATH = REPO_ROOT/"outputs/arrays/ecg_labels_array.npy"
 CHECKPOINT_PATH = REPO_ROOT/"outputs/models/best_inception_v3_ecg_model.pth"
 
-batch_size = 120
-
-
 class ECGInceptionV3(nn.Module):
     def __init__(self, num_classes):
         super(ECGInceptionV3, self).__init__()
@@ -28,6 +25,7 @@ class ECGInceptionV3(nn.Module):
             weights=None,
             aux_logits=True,
             init_weights=False,
+            transform_input=True,
         )
         self.inception.aux_logits = False
         self.inception.AuxLogits = None

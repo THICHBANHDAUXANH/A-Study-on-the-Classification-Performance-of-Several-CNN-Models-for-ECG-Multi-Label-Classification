@@ -12,11 +12,11 @@ from torch.utils.data import DataLoader, TensorDataset
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
-X_PATH = PROJECT_ROOT/"XAI_ECG/ecg_images_array.npy"
-Y_PATH = PROJECT_ROOT/"XAI_ECG/ecg_labels_array.npy"
-CHECKPOINT_PATH = PROJECT_ROOT/"XAI_ECG/Model/best_inception_v3_ecg_model.pth"
+X_PATH = REPO_ROOT/"outputs/arrays/ecg_images_array.npy"
+Y_PATH = REPO_ROOT/"outputs/arrays/ecg_labels_array.npy"
+CHECKPOINT_PATH = REPO_ROOT/"outputs/models/best_inception_v3_ecg_model.pth"
 
 batch_size = 120
 

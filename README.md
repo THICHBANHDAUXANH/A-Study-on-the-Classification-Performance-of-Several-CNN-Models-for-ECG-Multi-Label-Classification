@@ -115,7 +115,3 @@ outputs/gradcam/resnet50
 outputs/gradcam/densenet121
 outputs/gradcam/inception_v3
 ```
-
-## Report Assets
-
-Only images used in the report are kept in [report_assets](report_assets). Generated outputs are ignored by git.
